@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jeanette & Daniel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f1e8;
+            color: #3f4a3c;
+            font-family: Georgia, serif;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+
+            background-image:
+                linear-gradient(rgba(245, 241, 232, 0.45), rgba(245, 241, 232, 0.45)),
+                url("bakgrund.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+}
+
+        .welcome {
+            font-size: 14px;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+    font-size: 64px;
+    font-weight: normal;
+    line-height: 1.05;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+h1 span {
+    display: block;
+    font-size: 32px;
+    margin: 8px 0;
+    font-style: italic;
+}
+.ornament {
+    font-size: 24px;
+    margin: 5px 0 18px 0;
+    opacity: 0.85;
+}
+
+        .date {
+            font-size: 20px;
+            letter-spacing: 4px;
+        }
+
+        .scroll {
+    position: absolute;
+    bottom: 25px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(6px);
+    }
+
+    60% {
+        transform: translateY(3px);
+    }
+}
+
+.intro {
+    background-color: #f5f1e8;
+    padding: 90px 25px;
+    color: #3f4a3c;
+}
+
+.intro-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro h2 {
+    font-size: 42px;
+    font-weight: normal;
+    margin-bottom: 18px;
+}
+
+.intro-subtitle {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 45px;
+}
+
+.intro p {
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 28px;
+}
+
+.rsvp-note {
+    margin: 45px 0;
+    padding: 25px;
+    border-top: 1px solid rgba(63, 74, 60, 0.25);
+    border-bottom: 1px solid rgba(63, 74, 60, 0.25);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.rsvp-note strong {
+    font-size: 20px;
+}
+
+.closing {
+    margin-top: 45px;
+    font-style: italic;
+}
+
+.closing strong {
+    font-style: normal;
+}
+
+.day {
+    background-color: #eeeadf;
+    padding: 100px 25px;
+    color: #3f4a3c;
+}
+
+.day-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+    opacity: 0.75;
+}
+
+.day h2 {
+    font-size: 42px;
+    font-weight: normal;
+    margin-bottom: 65px;
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
+}
+
+.event:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 45px;
+    background-color: rgba(63, 74, 60, 0.25);
+    margin: 25px auto -45px auto;
+}
+
+.event {
+    position: relative;
+    z-index: 1;
+}
+
+.event {
+    position: relative;
+}
+
+.event-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 12px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeadf;
+    font-size: 23px;
+    opacity: 1;
+}
+
+.event h3 {
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.event-time {
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.event p {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.map-placeholder {
+    width: 100%;
+    max-width: 550px;
+    height: 220px;
+    margin: 25px auto 12px auto;
+    background-color: #dcd8cd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(63, 74, 60, 0.15);
+}
+
+.map-pin {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.map-placeholder p {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.map-link {
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.rsvp-button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 13px 28px;
+    border: 1px solid #3f4a3c;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rsvp-button:hover {
+    background-color: #3f4a3c;
+    color: #f5f1e8;
+}
+.rsvp-form {
+    max-width: 550px;
+    margin: 40px auto 0 auto;
+    text-align: left;
+}
+
+.rsvp-form > label {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form input[type="number"],
+.rsvp-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid rgba(63, 74, 60, 0.35);
+    background: transparent;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #3f4a3c;
+    outline: none;
+}
+
+.rsvp-form textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-group label {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.radio-group input {
+    margin-right: 8px;
+}
+
+.rsvp-form button {
+    display: block;
+    margin: 40px auto 0 auto;
+    padding: 13px 28px;
+    border: 1px solid #3f4a3c;
+    background: transparent;
+    color: #3f4a3c;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rsvp-form button:hover {
+    background-color: #3f4a3c;
+    color: #f5f1e8;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <section class="hero">
+
+        <div class="welcome">Välkommen</div>
+
+        <h1>
+             Jeanette
+            <span>&amp;</span>
+             Daniel
+        </h1>
+
+        <div class="ornament">❦</div>
+
+        <div class="date">10 JULI 2027</div>
+
+        <div class="scroll">SCROLLA NER ↓</div>
+
+    </section>
+
+    <section class="intro">
+
+    <div class="intro-content">
+
+        <h2>Vi ska gifta oss!</h2>
+
+        <div class="intro-subtitle">
+            BRÖLLOP & FEST
+        </div>
+
+        <p>
+            Äntligen bröllop! Vi har bestämt oss för att dela resten av livet
+            med varandra och säga ja någonstans i vackra Alingsås. Att vi
+            dessutom råkar fylla 100 år tillsammans i år ser vi som en
+            fantastisk bonus och en perfekt anledning att ställa till med
+            livets absolut största fest!
+        </p>
+
+        <p>
+            Du som har fått den här inbjudan är en av de personer som betyder
+            allra mest för oss. Du har en alldeles särskild plats i våra
+            hjärtan, och vår stora dag skulle helt enkelt inte vara komplett
+            utan dig. Vi vill inget hellre än att omges av den värme och
+            glädje som just du sprider.
+        </p>
+
+        <p>
+            Information kommer att läggas ut här på hemsidan efter hand,
+            i takt med att vi spikar alla detaljer. Här kommer du så småningom
+            att hitta den exakta platsen, tider och annan praktisk information.
+        </p>
+
+        <p>
+            Vi älskar barn, men denna dag väljer vi att fira i vuxet sällskap
+            och ber därför att barn under 18 år stannar hemma.
+        </p>
+
+        <p>
+            Inbjudan är personlig och gäller för den eller de som har fått
+            vårt sms.
+        </p>
+
+        <div class="rsvp-note">
+    <strong>O.S.A.</strong><br>
+    Vänligen svara senast den 1 april 2027.
+            <br>
+    <form
+    class="rsvp-form"
+    action="https://docs.google.com/forms/d/e/1FAIpQLSfhCEQpOMNJSOucXBZOt7_m2IWwIK-Byr0-fnDnE41WpsTfVg/formResponse"
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="showRsvpThanks()">
+
+    <label for="name">Namn</label>
+    <input type="text" id="name" name="entry.172444021" required>
+
+
+    <label>Kommer du på vårt bröllop?</label>
+
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="entry.821783916" value="Ja, självklart!" required>
+            Ja, självklart! ❤️
+        </label>
+
+        <label>
+            <input type="radio" name="entry.821783916" value="Tyvärr kan jag inte komma">
+            Tyvärr kan jag inte komma
+        </label>
+    </div>
+
+    <br>
+    <div class="radio-group">
+        <label for="guests">Hur många personer kommer?</label>
+<input type="number" id="guests" name="entry.809774555" min="1" required>
+
+    
+    </div>
+
+
+    <label for="food">
+        Allergier / matavvikelser - lämna blank om inga
+    </label>
+
+    <textarea id="food" name="entry.1460644639" rows="3"></textarea>
+
+
+    <label for="song">
+        En låt jag absolut inte kan sitta still till...
+    </label>
+
+    <input type="text" id="song" name="entry.534951849">
+
+
+    <button type="submit">SKICKA O.S.A. →</button>
+
+    
+
+    <iframe
+    name="hidden_iframe"
+    style="display:none;">
+    </iframe>
+</form>
+<div id="rsvp-thanks" style="display: none;">
+    <h3>Tack för ditt svar! ❤️</h3>
+    <p>
+        Vi ser fram emot att fira vår stora dag tillsammans med dig.
+    </p>
+    </div>
+
+</div>
+
+        <p>
+            Tveka inte att kontakta oss om ni undrar över något.
+        </p>
+
+        <p class="closing">
+            De varmaste kramarna,<br>
+            <strong>Jeanette & Daniel</strong>
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="day">
+
+    <div class="day-content">
+
+        <div class="section-label">DEN STORA DAGEN</div>
+
+        <h2>Vi gifter oss!</h2>
+
+        <div class="timeline">
+
+           <div class="event">
+    <div class="event-icon">♡</div>
+
+    <h3>Vigsel</h3>
+
+    <div class="event-time">14:00</div>
+
+    <p>
+        Här kommer platsen för vigseln att stå.
+    </p>
+
+    <div class="map-placeholder">
+        <div class="map-pin">📍</div>
+        <p>Google Maps</p>
+    </div>
+
+    <div class="map-link">
+        Öppna i Google Maps →
+    </div>
+</div>
+
+            <div class="event">
+    <div class="event-icon">❦</div>
+
+    <h3>Middag & fest</h3>
+
+    <div class="event-time">16:00</div>
+
+    <p>
+        Middag, tal, tårta, dans och fest hela kvällen.
+    </p>
+
+    <div class="map-placeholder">
+        <div class="map-pin">📍</div>
+        <p>Google Maps</p>
+    </div>
+
+    <div class="map-link">
+        Öppna i Google Maps →
+    </div>
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+<script>
+    const sections = document.querySelectorAll(".intro, .day");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    sections.forEach((section) => {
+        section.classList.add("fade-in");
+        observer.observe(section);
+    });
+
+    function showRsvpThanks() {
+    document.querySelector(".rsvp-form").style.display = "none";
+    document.getElementById("rsvp-thanks").style.display = "block";
+}
+</script>
+</html>
