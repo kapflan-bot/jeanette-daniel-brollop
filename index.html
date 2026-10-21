@@ -19,23 +19,27 @@
             font-family: Georgia, serif;
         }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
+    
+    
+    .hero-image {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 
-            background-image:
-                linear-gradient(rgba(245, 241, 232, 0.45), rgba(245, 241, 232, 0.45)),
-                url("bakgrund.jpg");
+    .hero-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-}
+    @media (max-width: 600px) {
+        .hero-image {
+            width: 100%;
+        }
+    }
+
+
 
         .welcome {
             font-size: 14px;
@@ -360,46 +364,36 @@ h1 span {
 
 <body>
 
-    <section class="hero">
-
-        <div class="welcome">Välkommen</div>
-
-        <h1>
-             Jeanette
-            <span>&amp;</span>
-             Daniel
-        </h1>
-
-        <div class="ornament">❦</div>
-
-        <div class="date">10 JULI 2027</div>
-
-        <div class="scroll">SCROLLA NER ↓</div>
-
-    </section>
+    
 
     <section class="intro">
 
     <div class="intro-content">
 
-        <h2>Vi ska gifta oss!</h2>
+        <h2>Vi ska gifta oss!❤️</h2>
+        
 
         <div class="intro-subtitle">
             BRÖLLOP & FEST
         </div>
 
+        <section class="hero-image">
+    <img src="bakgrund.jpg" alt="Jeanette och Daniel">
+    </section>
+    
+        <br>
+    
         <p>
             Äntligen bröllop! Vi har bestämt oss för att dela resten av livet
             med varandra och säga ja någonstans i vackra Alingsås. Att vi
-            dessutom råkar fylla 100 år tillsammans i år ser vi som en
+            dessutom råkar fylla 100 år tillsammans samma år ser vi som en
             fantastisk bonus och en perfekt anledning att ställa till med
             livets absolut största fest!
         </p>
 
         <p>
             Du som har fått den här inbjudan är en av de personer som betyder
-            allra mest för oss. Du har en alldeles särskild plats i våra
-            hjärtan, och vår stora dag skulle helt enkelt inte vara komplett
+            allra mest för oss. Vår stora dag skulle helt enkelt inte vara komplett
             utan dig. Vi vill inget hellre än att omges av den värme och
             glädje som just du sprider.
         </p>
@@ -422,7 +416,7 @@ h1 span {
 
         <div class="rsvp-note">
     <strong>O.S.A.</strong><br>
-    Vänligen svara senast den 1 april 2027.
+    Vänligen gärna så snabbt som möjligt men senast den 1 april 2027.
             <br>
     <form
     class="rsvp-form"
