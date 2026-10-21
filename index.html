@@ -21,23 +21,71 @@
 
     
     
-    .hero-image {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .hero-image img {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
-
-    @media (max-width: 600px) {
+    
         .hero-image {
             width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
-    }
+
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .carousel-image {
+            display: none;
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel-image.active {
+            display: block;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: rgba(245, 241, 232, 0.85);
+            color: #3f4a3c;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-arrow.prev {
+            left: 12px;
+        }
+
+        .carousel-arrow.next {
+            right: 12px;
+        }
+
+        .carousel-arrow:hover {
+            background: #f5f1e8;
+        }
+
+        @media (max-width: 600px) {
+            .hero-image {
+                width: 100%;
+            }
+
+            .carousel-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+        }
+
 
 
 
@@ -377,9 +425,21 @@ h1 span {
             BRÖLLOP & FEST
         </div>
 
+        
         <section class="hero-image">
-    <img src="bakgrund.jpg" alt="Jeanette och Daniel">
-    </section>
+            <div class="image-carousel" id="imageCarousel">
+
+                <img src="bakgrund.jpg" alt="Jeanette och Daniel" class="carousel-image active">
+                <img src="bild2.jpg" alt="Bild 2" class="carousel-image">
+                <img src="bild3.jpg" alt="Bild 3" class="carousel-image">
+                <img src="bild4.jpg" alt="Bild 4" class="carousel-image">
+
+                <button class="carousel-arrow prev" type="button" aria-label="Föregående bild">&#10094;</button>
+                <button class="carousel-arrow next" type="button" aria-label="Nästa bild">&#10095;</button>
+
+            </div>
+        </section>
+
     
         <br>
     
@@ -394,8 +454,7 @@ h1 span {
         <p>
             Du som har fått den här inbjudan är en av de personer som betyder
             allra mest för oss. Vår stora dag skulle helt enkelt inte vara komplett
-            utan dig. Vi vill inget hellre än att omges av den värme och
-            glädje som just du sprider.
+            utan dig. 
         </p>
 
         <p>
@@ -555,6 +614,49 @@ h1 span {
     </div>
 
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.getElementById("imageCarousel");
+    if (!carousel) return;
+
+    const images = carousel.querySelectorAll(".carousel-image");
+    const prevButton = carousel.querySelector(".carousel-arrow.prev");
+    const nextButton = carousel.querySelector(".carousel-arrow.next");
+
+    if (images.length === 0 || !prevButton || !nextButton) return;
+
+    let currentIndex = 0;
+    let startX = 0;
+
+    function showImage(index) {
+        images[currentIndex].classList.remove("active");
+        currentIndex = (index + images.length) % images.length;
+        images[currentIndex].classList.add("active");
+    }
+
+    prevButton.addEventListener("click", function () {
+        showImage(currentIndex - 1);
+    });
+
+    nextButton.addEventListener("click", function () {
+        showImage(currentIndex + 1);
+    });
+
+    carousel.addEventListener("touchstart", function (event) {
+        startX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", function (event) {
+        const endX = event.changedTouches[0].clientX;
+        const difference = endX - startX;
+
+        if (Math.abs(difference) > 50) {
+            showImage(difference < 0 ? currentIndex + 1 : currentIndex - 1);
+        }
+    }, { passive: true });
+});
+</script>
 
 </body>
 <script>
